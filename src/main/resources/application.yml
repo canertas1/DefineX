@@ -1,0 +1,27 @@
+spring:
+ application:
+  name: taskmanagement
+
+ datasource:
+  url: jdbc:postgresql://localhost:5432/definex
+  username: postgres
+  password: 12345
+  driver-class-name: org.postgresql.Driver
+
+ jpa:
+  database-platform: org.hibernate.dialect.PostgreSQLDialect
+  hibernate:
+   ddl-auto: update
+  show-sql: true
+ servlet:
+  multipart:
+   max-file-size: 10MB
+   max-request-size: 10MB
+jwt:
+ secret: E3F2B87DF10D3A43257E4D68D50D97E810556C1D24C852E174875CE3194E1C16
+ expiration: 3600000
+
+
+file:
+ upload-dir: C:/Users/caner/OneDrive/Belgeler/Taskmanagement
+
