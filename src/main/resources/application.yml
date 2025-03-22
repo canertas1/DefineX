@@ -28,4 +28,4 @@ file:
 security:
  auth:
   public-endpoints: "/api/auth/**"
-  team-leader-endpoints: "/api/department/**"
+  team-leader-endpoints: "/api/departments/**"
