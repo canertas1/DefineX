@@ -26,7 +26,7 @@ public class User extends AbstractBaseEntity implements UserDetails {
     private String name;
     private String email;
     private String password;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
     @JsonBackReference(value = "department-users")
     private Department department;

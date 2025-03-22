@@ -1,7 +1,9 @@
 package com.example.definex.taskmanagement.controller;
 
 import com.example.definex.taskmanagement.dto.request.CreateUserRequest;
+import com.example.definex.taskmanagement.dto.request.UpdateUserRequest;
 import com.example.definex.taskmanagement.dto.response.CreatedUserResponse;
+import com.example.definex.taskmanagement.dto.response.UpdatedUserResponse;
 import com.example.definex.taskmanagement.dto.response.UserResponse;
 import com.example.definex.taskmanagement.service.UserService;
 import jakarta.validation.Valid;
@@ -21,6 +23,10 @@ public class UserController {
     @PostMapping
     public ResponseEntity<CreatedUserResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
         return ResponseEntity.ok(userService.save(request));
+    }
+    @PostMapping("/update/{userId}")
+    public ResponseEntity<UpdatedUserResponse> updateUser(@RequestBody UpdateUserRequest updateUserRequest,@PathVariable Long userId){
+        return ResponseEntity.ok(userService.update(updateUserRequest,userId));
     }
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
