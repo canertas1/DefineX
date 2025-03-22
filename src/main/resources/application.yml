@@ -25,3 +25,7 @@ jwt:
 file:
  upload-dir: C:/Users/caner/OneDrive/Belgeler/Taskmanagement
 
+security:
+ auth:
+  public-endpoints: "/api/auth/**"
+  team-leader-endpoints: "/api/department/**"

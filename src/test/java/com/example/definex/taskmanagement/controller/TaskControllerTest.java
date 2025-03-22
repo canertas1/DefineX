@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
  class TaskControllerTest {
-    private static final String API_BASE_PATH = "/api/task";
+    private static final String API_BASE_PATH = "/api/tasks";
     @InjectMocks
     private TaskController taskController;
     @Mock

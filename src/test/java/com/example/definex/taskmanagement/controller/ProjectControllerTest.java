@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
  class ProjectControllerTest {
-    private static final String API_BASE_PATH = "/api/project";
+    private static final String API_BASE_PATH = "/api/projects";
     @InjectMocks
     private ProjectController projectController;
     @Mock

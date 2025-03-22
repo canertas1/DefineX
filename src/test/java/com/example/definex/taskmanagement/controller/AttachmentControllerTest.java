@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
  class AttachmentControllerTest {
-    private static final String API_BASE_PATH = "/api/attachment";
+    private static final String API_BASE_PATH = "/api/attachments";
 
     @InjectMocks
     private AttachmentController attachmentController;

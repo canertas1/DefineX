@@ -34,6 +34,7 @@ public enum MessageKey {
     USER_CANNOT_DOWNLOAD_FILES_FROM_UNASSIGNED_TASKS("User cannot download files from tasks not assigned to them"),
     USER_CANNOT_DELETE_FILES_FROM_UNASSIGNED_TASKS("User cannot delete files from tasks not assigned to them"),
     USER_CANNOT_VIEW_ATTACHMENTS_FROM_UNASSIGNED_TASKS("User cannot view attachments from tasks not assigned to them"),
+    USER_NOT_FOUND_WITH_EMAIL("User cannot found with email"),
 
 
     USER_CANNOT_MANAGE_PROJECTS_IN_DEPARTMENT("User cannot manage projects in this department"),

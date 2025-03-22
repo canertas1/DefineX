@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
  class UserControllerTest {
 
-    private static final String API_BASE_PATH = "/api/user";
+    private static final String API_BASE_PATH = "/api/users";
 
     @InjectMocks
     private UserController userController;

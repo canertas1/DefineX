@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
  class DepartmentControllerTest {
-    private static final String API_BASE_PATH = "/api/department";
+    private static final String API_BASE_PATH = "/api/departments";
 
     @InjectMocks
     private DepartmentController departmentController;

@@ -13,5 +13,4 @@ public interface AttachmentService {
     Resource downloadFile(Long attachmentId);
     void deleteAttachment(Long attachmentId);
     List<FileAttachmentResponse> getTaskAttachments(Long taskId);
-
 }
