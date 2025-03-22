@@ -1,6 +1,5 @@
 package com.example.definex.taskmanagement.dto.response;
 
-import com.example.definex.taskmanagement.entities.Project;
 import com.example.definex.taskmanagement.entities.TaskPriorityType;
 import com.example.definex.taskmanagement.entities.TaskStateType;
 import lombok.AllArgsConstructor;

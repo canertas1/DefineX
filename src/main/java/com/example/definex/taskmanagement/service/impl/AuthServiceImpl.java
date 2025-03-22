@@ -4,7 +4,6 @@ import com.example.definex.taskmanagement.config.security.JwtService;
 import com.example.definex.taskmanagement.dto.request.LoginRequest;
 import com.example.definex.taskmanagement.dto.request.RegisterRequest;
 import com.example.definex.taskmanagement.dto.response.AuthResponse;
-import com.example.definex.taskmanagement.entities.Role;
 import com.example.definex.taskmanagement.entities.User;
 import com.example.definex.taskmanagement.exception.UserEmailAlreadyExistsException;
 import com.example.definex.taskmanagement.exception.constants.MessageKey;
@@ -59,7 +58,7 @@ public class AuthServiceImpl implements AuthService {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Role.TEAM_MEMBER);
+        user.setRole(request.getRole());
 
         userRepository.save(user);
 

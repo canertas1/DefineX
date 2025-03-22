@@ -1,9 +1,11 @@
 package com.example.definex.taskmanagement.entities;
 
 public enum Role{
-    ADMIN("ADMIN"),
+
     GROUP_MANAGER("GROUP_MANAGER"),
+
     TEAM_LEADER("TEAM_LEADER"),
+
     TEAM_MEMBER("TEAM_MEMBER");
 
     private final String roleType;

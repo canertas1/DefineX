@@ -35,7 +35,6 @@ public class CommentServiceImpl implements CommentService {
     public CreatedCommentResponse save(CreateCommentRequest createCommentRequest){
 
         Long userId = createCommentRequest.getUserId();
-
         User user = userRepository.findById(userId)
                 .orElseThrow(()-> new UserNotFoundException(MessageKey.USER_NOT_FOUND_WITH_ID.toString()));
 

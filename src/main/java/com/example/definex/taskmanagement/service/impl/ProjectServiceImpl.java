@@ -3,8 +3,10 @@ package com.example.definex.taskmanagement.service.impl;
 import com.example.definex.taskmanagement.authorization.ProjectAuthorization;
 import com.example.definex.taskmanagement.dto.mapper.ProjectMapper;
 import com.example.definex.taskmanagement.dto.request.CreateProjectRequest;
+import com.example.definex.taskmanagement.dto.request.UpdateProjectRequest;
 import com.example.definex.taskmanagement.dto.response.CreatedProjectResponse;
 import com.example.definex.taskmanagement.dto.response.ProjectResponse;
+import com.example.definex.taskmanagement.dto.response.UpdatedProjectResponse;
 import com.example.definex.taskmanagement.entities.Department;
 import com.example.definex.taskmanagement.entities.Project;
 import com.example.definex.taskmanagement.exception.DepartmentNotFoundException;
@@ -28,13 +30,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public CreatedProjectResponse save(CreateProjectRequest createProjectRequest,Long departmentId){
-        Long id = departmentId;
 
         if(createProjectRequest.getTitle()==null||createProjectRequest.getTitle().trim().isEmpty()){
             throw new ProjectValidationException(MessageKey.PROJECT_TITLE_CANNOT_BE_EMPTY.toString());
         }
 
-        Department department = departmentRepository.findById(id)
+        Department department = departmentRepository.findById(departmentId)
                 .orElseThrow(()->new DepartmentNotFoundException(MessageKey.DEPARTMENT_NOT_FOUND_WITH_ID.toString()));
 
 
@@ -44,6 +45,19 @@ public class ProjectServiceImpl implements ProjectService {
 
         projectRepository.save(project);
         return projectMapper.projectToCreatedProjectResponse(project);
+    }
+    @Override
+    public UpdatedProjectResponse update(UpdateProjectRequest updateProjectRequest,Long projectId){
+
+        Project project = projectRepository.findById(projectId).orElseThrow(()->new ProjectNotFoundException(MessageKey.PROJECT_NOT_FOUND_WITH_ID.toString()));
+
+        projectAuthorization.userHasAuthorization(project);
+
+        project.setTitle(updateProjectRequest.getTitle());
+        project.setDescription(updateProjectRequest.getDescription());
+        project.setType(updateProjectRequest.getType());
+
+        return projectMapper.projectToUpdatedProjectResponse(projectRepository.save(project));
     }
     @Override
     public ProjectResponse findById(Long id){

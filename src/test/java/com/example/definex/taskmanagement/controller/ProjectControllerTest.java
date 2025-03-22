@@ -1,8 +1,10 @@
 package com.example.definex.taskmanagement.controller;
 
 import com.example.definex.taskmanagement.dto.request.CreateProjectRequest;
+import com.example.definex.taskmanagement.dto.request.UpdateProjectRequest;
 import com.example.definex.taskmanagement.dto.response.CreatedProjectResponse;
 import com.example.definex.taskmanagement.dto.response.ProjectResponse;
+import com.example.definex.taskmanagement.dto.response.UpdatedProjectResponse;
 import com.example.definex.taskmanagement.exception.GlobalExceptionHandler;
 import com.example.definex.taskmanagement.exception.ProjectNotFoundException;
 import com.example.definex.taskmanagement.exception.constants.MessageKey;
@@ -85,4 +87,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         mockMvc.perform(delete(API_BASE_PATH + "/1"))
                 .andExpect(status().isNotFound());
     }
+     @Test
+     void updateProject_ValidRequest_ReturnsUpdatedProject() throws Exception {
+         UpdateProjectRequest request = new UpdateProjectRequest();
+         request.setTitle("Updated Title");
+         request.setDescription("Updated description");
+
+         UpdatedProjectResponse mockResponse = new UpdatedProjectResponse();
+         mockResponse.setTitle("Updated Title");
+         mockResponse.setDescription("Updated description");
+
+         when(projectService.update(any(UpdateProjectRequest.class), eq(1L)))
+                 .thenReturn(mockResponse);
+
+         mockMvc.perform(post(API_BASE_PATH + "/update/1")
+                         .contentType(MediaType.APPLICATION_JSON)
+                         .content(objectMapper.writeValueAsString(request)))
+                 .andExpect(status().isOk());
+     }
+     @Test
+     void updateProject_InvalidProjectId_ReturnsNotFound() throws Exception {
+         UpdateProjectRequest request = new UpdateProjectRequest();
+         request.setTitle("Updated Title");
+
+         when(projectService.update(any(UpdateProjectRequest.class), eq(1L)))
+                 .thenThrow(new ProjectNotFoundException(MessageKey.PROJECT_NOT_FOUND_WITH_ID.getMessage()));
+
+         mockMvc.perform(post(API_BASE_PATH + "/update/1")
+                         .contentType(MediaType.APPLICATION_JSON)
+                         .content(objectMapper.writeValueAsString(request)))
+                 .andExpect(status().isNotFound());
+     }
 }

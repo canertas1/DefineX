@@ -72,11 +72,6 @@ import static org.mockito.Mockito.when;
         groupManager.setRole(Role.GROUP_MANAGER);
         groupManager.setDepartment(department1);
 
-        adminUser = new User();
-        adminUser.setId(3L);
-        adminUser.setName("admin");
-        adminUser.setRole(Role.ADMIN);
-        adminUser.setDepartment(department1);
 
         when(securityContext.getAuthentication()).thenReturn(authentication);
         SecurityContextHolder.setContext(securityContext);

@@ -1,7 +1,5 @@
 package com.example.definex.taskmanagement.dto.response;
 
-import com.example.definex.taskmanagement.entities.Task;
-import com.example.definex.taskmanagement.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -3,8 +3,10 @@ package com.example.definex.taskmanagement.service;
 import com.example.definex.taskmanagement.authorization.impl.ProjectAuthorizationImpl;
 import com.example.definex.taskmanagement.dto.mapper.ProjectMapper;
 import com.example.definex.taskmanagement.dto.request.CreateProjectRequest;
+import com.example.definex.taskmanagement.dto.request.UpdateProjectRequest;
 import com.example.definex.taskmanagement.dto.response.CreatedProjectResponse;
 import com.example.definex.taskmanagement.dto.response.ProjectResponse;
+import com.example.definex.taskmanagement.dto.response.UpdatedProjectResponse;
 import com.example.definex.taskmanagement.entities.Department;
 import com.example.definex.taskmanagement.entities.Project;
 import com.example.definex.taskmanagement.exception.DepartmentNotFoundException;
@@ -214,5 +216,56 @@ import static org.mockito.Mockito.*;
         );
         assertEquals(MessageKey.USER_CANNOT_MANAGE_PROJECTS_IN_DEPARTMENT.toString() + DEPARTMENT_ID, exception.getMessage());
         verify(projectRepository, never()).save(any());
+    }
+    @Test
+    void update_ShouldUpdateProject_WhenValidRequest() {
+        UpdateProjectRequest updateProjectRequest = new UpdateProjectRequest();
+        updateProjectRequest.setTitle("Updated Project Title");
+        updateProjectRequest.setDescription("Updated description");
+
+        Project existingProject = new Project();
+        existingProject.setId(PROJECT_ID);
+        existingProject.setTitle("Old Title");
+        existingProject.setDescription("Old description");
+
+        Project updatedProject = new Project();
+        updatedProject.setId(PROJECT_ID);
+        updatedProject.setTitle("Updated Project Title");
+        updatedProject.setDescription("Updated description");
+
+        UpdatedProjectResponse updatedProjectResponse = new UpdatedProjectResponse();
+        updatedProjectResponse.setTitle("Updated Project Title");
+        updatedProjectResponse.setDescription("Updated description");
+
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.of(existingProject));
+        doNothing().when(projectAuthorizationImpl).userHasAuthorization(existingProject);
+        when(projectRepository.save(any(Project.class))).thenReturn(updatedProject);
+        when(projectMapper.projectToUpdatedProjectResponse(updatedProject)).thenReturn(updatedProjectResponse);
+
+        UpdatedProjectResponse result = projectService.update(updateProjectRequest, PROJECT_ID);
+
+        assertNotNull(result);
+        assertEquals("Updated Project Title", result.getTitle());
+        assertEquals("Updated description", result.getDescription());
+
+        verify(projectRepository, times(1)).findById(PROJECT_ID);
+        verify(projectAuthorizationImpl, times(1)).userHasAuthorization(existingProject);
+        verify(projectRepository, times(1)).save(any(Project.class));
+        verify(projectMapper, times(1)).projectToUpdatedProjectResponse(any(Project.class));
+    }
+
+    @Test
+    void update_ShouldThrowProjectNotFoundException_WhenProjectNotFound() {
+        UpdateProjectRequest updateProjectRequest = new UpdateProjectRequest();
+        updateProjectRequest.setTitle("Updated Project Title");
+
+        when(projectRepository.findById(PROJECT_ID)).thenReturn(Optional.empty());
+
+        assertThrows(ProjectNotFoundException.class, () ->
+                projectService.update(updateProjectRequest, PROJECT_ID));
+
+        verify(projectRepository, times(1)).findById(PROJECT_ID);
+        verify(projectAuthorizationImpl, never()).userHasAuthorization(any(Project.class));
+        verify(projectRepository, never()).save(any(Project.class));
     }
 }
