@@ -18,14 +18,12 @@ public interface DepartmentMapper {
     DepartmentMapper INSTANCE = Mappers.getMapper(DepartmentMapper.class);
 
     Department createDepartmentRequestToDepartment(CreateDepartmentRequest createDepartmentRequest);
-    CreateDepartmentRequest departmentToCreatedDepartmentRequest(Department department);
+
     @Mapping(source = "projects", target = "projects", qualifiedByName = "projectToProjectSummaryResponse")
     CreatedDepartmentResponse departmentToCreatedDepartmentResponse(Department department);
-    Department createdDepartmentReponseToDepartment(CreatedDepartmentResponse createdDepartmentResponse);
 
     @Mapping(source = "projects", target = "projects", qualifiedByName = "projectToProjectSummaryResponse")
     DepartmentResponse departmentToDepartmentResponse(Department department);
-    Department departmentReponseToDepartment(DepartmentResponse departmentResponse);
 
     @Named("projectToProjectSummaryResponse")
     default List<ProjectSummaryResponse> projectToProjectSummaryDto(List<Project> projects) {

@@ -8,7 +8,6 @@ import com.example.definex.taskmanagement.dto.response.CommentResponse;
 import com.example.definex.taskmanagement.dto.response.CreatedCommentResponse;
 import com.example.definex.taskmanagement.dto.response.UpdatedCommentResponse;
 import com.example.definex.taskmanagement.entities.Comment;
-import com.example.definex.taskmanagement.entities.Role;
 import com.example.definex.taskmanagement.entities.Task;
 import com.example.definex.taskmanagement.entities.User;
 import com.example.definex.taskmanagement.exception.CommentNotFoundException;

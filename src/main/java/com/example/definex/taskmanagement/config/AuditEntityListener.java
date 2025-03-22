@@ -1,4 +1,4 @@
-package com.example.definex.taskmanagement.config.security;
+package com.example.definex.taskmanagement.config;
 
 import com.example.definex.taskmanagement.entities.AbstractBaseEntity;
 import jakarta.persistence.PrePersist;

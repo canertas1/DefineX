@@ -18,7 +18,6 @@ import com.example.definex.taskmanagement.repository.TaskRepository;
 import com.example.definex.taskmanagement.repository.UserRepository;
 import com.example.definex.taskmanagement.service.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 @Service

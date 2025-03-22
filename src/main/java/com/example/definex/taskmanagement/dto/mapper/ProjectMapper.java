@@ -12,13 +12,8 @@ import org.mapstruct.factory.Mappers;
 public interface ProjectMapper {
     ProjectMapper INSTANCE = Mappers.getMapper(ProjectMapper.class);
 
-    CreateProjectRequest projectToCreateProjectRequest(Project project);
-
     Project createProjectRequestToProject(CreateProjectRequest createProjectRequest);
-
     @Mapping(source = "department.id", target = "departmentId")
     CreatedProjectResponse projectToCreatedProjectResponse(Project project);
-    Project createdProjectResponseToProject(CreatedProjectResponse createdProjectResponse);
-    Project projectResponseToProject(ProjectResponse projectResponse);
     ProjectResponse projectToProjectResponse(Project project);
 }

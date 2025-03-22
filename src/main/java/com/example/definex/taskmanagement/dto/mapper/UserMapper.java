@@ -12,11 +12,7 @@ public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    CreateUserRequest userToUserCreateUserRequest(User user);
     User createUserRequestToUser(CreateUserRequest createUserRequest);
     CreatedUserResponse userToCreatedUserResponse(User user);
-    User createdUserResponseToUser(CreatedUserResponse createdUserResponse);
     UserResponse userToUserResponse(User user);
-    User userReponseToUser(UserResponse userResponse);
-
 }

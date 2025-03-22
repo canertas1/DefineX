@@ -12,16 +12,11 @@ import org.mapstruct.factory.Mappers;
 public interface AttachmentMapper {
     AttachmentMapper INSTANCE = Mappers.getMapper(AttachmentMapper.class);
 
-    UploadFileAttachmentRequest attachmentToUploadFileAttachmentRequest(Attachment attachment);
-    Attachment uploadFileAttachmentRequestToAttachment(UploadFileAttachmentRequest uploadFileAttachmentRequest);
-
     @Mapping(source = "task.id", target = "taskId")
     @Mapping(source = "user.id", target = "userId")
     UploadedFileAttachmentResponse attachmentToUploadedFileAttachmentResponse(Attachment attachment);
-    Attachment uploadedFileAttachmentResponseToAttachment(UploadedFileAttachmentResponse uploadedFileAttachmentResponse);
 
     @Mapping(source = "task.id", target = "taskId")
     @Mapping(source = "user.id", target = "userId")
     FileAttachmentResponse attachmentToFileAttachmentResponse(Attachment attachment);
-    Attachment fileAttachmentResponseToAttachment(FileAttachmentResponse fileAttachmentResponse);
 }

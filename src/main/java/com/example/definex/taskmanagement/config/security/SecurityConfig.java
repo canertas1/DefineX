@@ -1,5 +1,6 @@
 package com.example.definex.taskmanagement.config.security;
 
+import com.example.definex.taskmanagement.config.security.JwtAuthenticationFilter;
 import com.example.definex.taskmanagement.entities.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

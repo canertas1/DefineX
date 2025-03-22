@@ -14,17 +14,11 @@ import org.mapstruct.factory.Mappers;
 public interface CommentMapper {
     CommentMapper INSTANCE = Mappers.getMapper(CommentMapper.class);
 
-    CreateCommentRequest commentToCreateCommentRequest(Comment comment);
     Comment createCommentRequestToComment(CreateCommentRequest createCommentRequest);
     @Mapping(source = "task.id", target = "taskId")
     @Mapping(source = "user.id", target = "userId")
     CreatedCommentResponse commentToCreatedCommentResponse(Comment comment);
-    Comment createdCommentResponseToComment(CreatedCommentResponse createdCommentResponse);
-    Comment updateCommentRequestToComment(UpdateCommentRequest updateCommentRequest);
-    UpdateCommentRequest commentToUpdateCommentRequest(Comment comment);
-    Comment updatedCommentResponseToComment(UpdatedCommentResponse updatedCommentResponse);
     UpdatedCommentResponse commentToUpdatedCommentResponse(Comment comment);
-    Comment commentResponseToComment(CommentResponse commentResponse);
     @Mapping(source = "task.id", target = "taskId")
     @Mapping(source = "user.id", target = "userId")
     CommentResponse commentToCommentResponse(Comment comment);

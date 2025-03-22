@@ -1,6 +1,6 @@
 package com.example.definex.taskmanagement.entities;
 
-import com.example.definex.taskmanagement.config.security.AuditEntityListener;
+import com.example.definex.taskmanagement.config.AuditEntityListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
